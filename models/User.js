@@ -22,7 +22,9 @@ const userSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'Thought'
     },
-    friends: [{ type: Schema.Types.ObjectId, ref: 'User'}],
+    friends: [{ 
+      type: Schema.Types.ObjectId,
+      ref: 'User'}],
   },
   {
     toJSON: {
@@ -32,6 +34,7 @@ const userSchema = new Schema(
   },
 );
 
+// Create a virtual property `friendCount` that gets the amount of reactions per user
 userSchema.virtual('friendCount').get(function () {
     return this.friends.length;
   });
