@@ -21,11 +21,16 @@ const usernames = [
 ]
 
 const thoughts = [
-    '',
+    'Looking at the current situation in Ukraine, North Korea and Iran will never give up their nuclear weapons',
+    'As you can see from Russia invasion of Ukraine, the world is now witnessing the reality that countries with nuclear weapons are strong in the end.',
 ]
 
 const reactions = [
-    '',
+    'Fake news',
+    'I disagree',
+    'I understand',
+    'LMAO',
+    'lol',
 
 ]
 
