@@ -1,8 +1,6 @@
 const usernames = [
-    'Aaran',
   'Smith',
   'Jones',
-  'Zendel',
   'Zenith',
   'Zhen',
   'Zhi',
@@ -13,16 +11,16 @@ const usernames = [
   'Grace',
   'Alex',
   'Mark',
-  'Tamar',
-  'Farish',
   'Sarah',
-  'Nathaniel',
   'Parker',
 ]
 
 const thoughts = [
     'Looking at the current situation in Ukraine, North Korea and Iran will never give up their nuclear weapons',
-    'As you can see from Russia invasion of Ukraine, the world is now witnessing the reality that countries with nuclear weapons are strong in the end.',
+    'As you can see from Russia invasion of Ukraine, the world is now witnessing the reality that countries with nuclear weapons prevail in the end.',
+    'I like apples.',
+    'I will have a job interview tomorrow.',
+    'Putin invaded Ukraine',
 ]
 
 const reactions = [
@@ -30,7 +28,8 @@ const reactions = [
     'I disagree',
     'I understand',
     'LMAO',
-    'lol',
+    'Stand with Ukraine people!',
+    'Good luck!',
 
 ]
 
@@ -43,6 +42,7 @@ const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 const getRandomThought = () =>
   `${getRandomArrItem(thoughts)}`;
 
+// Gets random username
 const getRandomUserName = () =>
   `${getRandomArrItem(usernames)}${Math.floor(Math.random() * 10 + 1)}`;
 

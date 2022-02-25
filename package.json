@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "seed": "node utils/seed"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,8 @@
   },
   "homepage": "https://github.com/magickw/SocialNetworkAPI#readme",
   "dependencies": {
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "moment": "^2.29.1",
+    "mongoose": "^6.2.3"
   }
 }
