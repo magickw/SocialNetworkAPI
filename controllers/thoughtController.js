@@ -4,19 +4,17 @@ module.exports = {
     //get all thoughts
     getThoughts(req, res){
         Thought.find()
-            .then(async (thoughts) => res.json(thoughts))
+            .then((thoughts) => res.json(thoughts))
             .catch((err) => res.status(500).json(err));
     },
     //get a single thought
     getSingleThought(req, res){
         Thought.findOne({ _id: req.params.thoughtId })
             .select('-__v')
-            .then(async (thought) =>
+            .then((thought) =>
                 !thought
                     ? res.status(404).json({ message: 'No thought with that id' })
-                    : res.json({
-                    thought
-            })
+                    : res.json(thought)
             )
             .catch((err) => {
             console.log(err);
@@ -53,10 +51,10 @@ module.exports = {
             { $set: req.body },
             { runValidators: true, new: true }
           )
-            .then((course) =>
-              !course
+            .then((thought) =>
+              !thought
                 ? res.status(404).json({ message: 'No thought with this id!' })
-                : res.json(course)
+                : res.json(thought)
             )
             .catch((err) => res.status(500).json(err));
     },
