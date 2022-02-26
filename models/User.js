@@ -16,12 +16,12 @@ const userSchema = new Schema(
       required: true,
       unique: true,
       //regular expression to check if it's a valid email address
-      match: /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/,
+      match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please enter a valid email address']
     },
-    thoughts: {
+    thoughts: [{
       type: Schema.Types.ObjectId,
-      ref: 'Thought'
-    },
+      ref: 'Thoughts'
+  }],
     friends: [{ 
       type: Schema.Types.ObjectId,
       ref: 'User'}],
