@@ -4,14 +4,14 @@ module.exports = {
     //get all users
     getUsers(req, res){
         User.find()
-                .then(async (users) => res.json(users))         
+                .then((users) => res.json(users))         
                 .catch((err) => res.status(500).json(err));
     },
     //get a single user
     getSingleUser(req, res){
         User.findOne({ _id: req.params.userId }).select('-__v')
             .lean()
-            .then(async (user) =>
+            .then((user) =>
             !user
                 ? res.status(404).json({ message: 'No user with that id' })
                 : res.json(user)
