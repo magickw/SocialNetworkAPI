@@ -45,5 +45,9 @@ const getRandomThought = () =>
 const getRandomUserName = () =>
   `${getRandomArrItem(usernames)}${Math.floor(Math.random() * 10 + 1)}`;
 
+//Gets random reaction
+
+const getRandomReaction = () =>
+  `${getRandomArrItem(reactions)}`;
 // Export the functions for use in seed.js
-module.exports = { getRandomThought, getRandomUserName };
+module.exports = { getRandomThought, getRandomUserName, getRandomReaction };
