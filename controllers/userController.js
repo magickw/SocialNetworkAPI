@@ -20,7 +20,7 @@ module.exports = {
     },
 
     //create new user
-    createNewUser(req, res){
+    createUser(req, res){
         User.create(req.body)
             .then((user) => res.json(user))
             .catch((err) => {
@@ -54,7 +54,7 @@ module.exports = {
             .catch((err) => res.status(500).json(err));
     },
     //add new friend
-    addNewFriend(req, res){
+    addFriend(req, res){
         console.log('You are adding a friend.');
         console.log(req.body);
         User.findOneAndUpdate(

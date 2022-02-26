@@ -7,7 +7,6 @@ const usernames = [
   'Zhong',
   'Zhuo',,
   'Xander',
-  'Jared',
   'Grace',
   'Alex',
   'Mark',
