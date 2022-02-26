@@ -51,7 +51,10 @@ module.exports = {
     },
      //delete user
     deleteUserById(req, res){
-        User.findOneAndRemove({ _id: req.params.userId })
+        User.findOneAndRemove(
+            { _id: req.params.userId },
+            {new: true},
+            )
             .then((user) =>
                 !user
                     ? res.status(404).json({ message: 'No user with that id' })
@@ -67,9 +70,10 @@ module.exports = {
         User.findOneAndUpdate(
             { _id: req.params.userId },
             { $addToSet: { friends: req.body } },
-            { runValidators: true, new: true }
+            { new: true }
         )
-            .then((user) =>
+        .populate({path: 'friends', select: ('-__v')})
+        .then((user) =>
                 !user
                     ? res.status(404).json({ message: 'No user found with that id.' })
                     : res.json(user)
@@ -80,10 +84,11 @@ module.exports = {
     removeFriend(req, res){
         User.findOneAndUpdate(
             { _id: req.params.userId },
-            { $pull: { friend: { friendId: req.params.friendId } } },
-            { runValidators: true, new: true }
+            { $pull: { friend: req.params.friendId } },
+            { new: true },
           )
-            .then((user) =>
+          .populate({path: 'friends', select: ('-__v')})
+          .then((user) =>
               !user
                 ? res.status(404).json({ message: 'No user found with that id.' })
                 : res.json(user)
