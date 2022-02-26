@@ -4,13 +4,17 @@ module.exports = {
     //get all thoughts
     getThoughts(req, res){
         Thought.find()
+        // populate all of the reactions associated with it
+        .populate({path: 'reactions', select: '-__v'})
+        .select('-__v')
             .then((thoughts) => res.json(thoughts))
             .catch((err) => res.status(500).json(err));
     },
     //get a single thought
     getSingleThought(req, res){
         Thought.findOne({ _id: req.params.thoughtId })
-            .select('-__v')
+        .populate({path: 'reactions', select: '-__v'})
+        .select('-__v')
             .then((thought) =>
                 !thought
                     ? res.status(404).json({ message: 'No thought with that id' })
@@ -49,11 +53,11 @@ module.exports = {
         Thought.findOneAndUpdate(
             { _id: req.params.thoughtId },
             { $set: req.body },
-            { runValidators: true, new: true }
+            { new: true }
           )
             .then((thought) =>
               !thought
-                ? res.status(404).json({ message: 'No thought with this id!' })
+                ? res.status(404).json({ message: 'No thought with that id!' })
                 : res.json(thought)
             )
             .catch((err) => res.status(500).json(err));
@@ -61,7 +65,8 @@ module.exports = {
 
     //delete thought
     deleteThought(req, res){
-        Thought.findOneAndDelete({ _id: req.params.thoughtId })
+        Thought.findOneAndDelete({ _id: req.params.thoughtId }, 
+          {new: true},)
             .then((thought) =>
                 !thought
                     ? res.status(404).json({ message: 'No thought with that id' })
@@ -77,9 +82,10 @@ module.exports = {
         Thought.findOneAndUpdate(
             { _id: req.params.thoughtId },
             { $addToSet: { reactions: req.body } },
-            { runValidators: true, new: true }
+            { new: true }
         )
-            .then((thought) =>
+        .populate({path: 'reactions', select: ('-__v')})
+        .then((thought) =>
                 !thought
                 ? res
                     .status(404)
@@ -93,13 +99,12 @@ module.exports = {
         Thought.findOneAndUpdate(
             { _id: req.params.thoughtId },
             { $pull: { reactions: { reactionId: req.params.reactionId } } },
-            { runValidators: true, new: true }
+            { new: true }
           )
-            .then( async (thought) =>
+          .populate({path: 'reactions', select: '-__v'})
+          .then( (thought) =>
               !thought
-                ? res
-                    .status(404)
-                    .json({ message: 'No thought found with that id.' })
+                ? res.status(404).json({ message: 'No thought found with that id.' })
                 : Thought.deleteMany({ _id: { $in: thought.reactions } })
                 )
                             .then(() => res.json({ message: 'Reaction deleted!' }))
