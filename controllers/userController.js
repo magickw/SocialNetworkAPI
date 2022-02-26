@@ -4,13 +4,20 @@ module.exports = {
     //get all users
     getUsers(req, res){
         User.find()
+        //populate will replace the thoughts id
+        .populate({path: 'thoughts', select: '-__v'})
+        .populate({path: 'friends', select: '-__v'})
+        .select('-__v')
                 .then((users) => res.json(users))         
                 .catch((err) => res.status(500).json(err));
     },
     //get a single user
     getSingleUser(req, res){
-        User.findOne({ _id: req.params.userId }).select('-__v')
-            .lean()
+        User.findOne({ _id: req.params.userId })
+        .populate({path: 'thoughts', select: '-__v'})
+        .populate({path: 'friends', select: '-__v'})
+        .select('-__v')
+            .lean() //Enabling the lean option tells Mongoose to skip instantiating a full Mongoose document
             .then((user) =>
             !user
                 ? res.status(404).json({ message: 'No user with that id' })
@@ -28,12 +35,12 @@ module.exports = {
                 return res.status(500).json(err);
             });
     },
-     //create user
+     //update user by if
     updateUserById(req, res){
         User.findOneAndUpdate(
             { _id: req.params.userId },
             { $set: req.body },
-            // { runValidators: true, new: true }
+            { new: true }
           )
             .then(async (user) =>
               !user
