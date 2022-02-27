@@ -1,16 +1,12 @@
 const usernames = [
   'Smith',
   'Jones',
-  'Zenith',
-  'Zhen',
   'Grace',
   'Alex',
   'Mark',
-  'Sarah',
-  'Parker',
 ]
 
-const thoughts = [
+const thoughtText = [
     'Looking at the current situation in Ukraine, North Korea and Iran will never give up their nuclear weapons',
     'As you can see from Russia invasion of Ukraine, the world is now witnessing the reality that countries with nuclear weapons prevail in the end.',
     'I like apples.',
@@ -18,11 +14,10 @@ const thoughts = [
     'Putin invaded Ukraine',
 ]
 
-const reactions = [
+const reactionBody = [
     'Fake news',
     'I disagree',
     'I understand',
-    'LMAO',
     'Stand with Ukraine people!',
     'Good luck!',
 
@@ -35,7 +30,7 @@ const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
 // Gets random thought
 const getRandomThought = () =>
-  `${getRandomArrItem(thoughts)}`;
+  `${getRandomArrItem(thoughtText)}`;
 
 // Gets random username
 const getRandomUserName = () =>
@@ -44,6 +39,6 @@ const getRandomUserName = () =>
 //Gets random reaction
 
 const getRandomReaction = () =>
-  `${getRandomArrItem(reactions)}`;
+  `${getRandomArrItem(reactionBody)}`;
 // Export the functions for use in seed.js
 module.exports = { getRandomThought, getRandomUserName, getRandomReaction };

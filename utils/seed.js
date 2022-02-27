@@ -16,13 +16,11 @@ connection.once('open', async () => {
 
   for (let i = 0; i < 10; i++) {
     const username = getRandomUserName();
-    const thought = getRandomThought();
-    const reaction = getRandomReaction();
+    // const thoughtText = getRandomThought();
+    // const reactionBody = getRandomReaction();
     const newUser = {
       username: username,
       email: `${username}@email.com`,
-      thoughts: thought,
-      reactions: reaction,
     };
     users.push(newUser);
   }
