@@ -16,8 +16,6 @@ connection.once('open', async () => {
 
   for (let i = 0; i < 10; i++) {
     const username = getRandomUserName();
-    // const thoughtText = getRandomThought();
-    // const reactionBody = getRandomReaction();
     const newUser = {
       username: username,
       email: `${username}@email.com`,
@@ -28,7 +26,29 @@ connection.once('open', async () => {
   // Wait for the users to be inserted into the database
   await User.collection.insertMany(users);
 
+  const thoughts =[];
+  for (let i = 0; i < 10; i++) {
+    const thoughtText = getRandomThought();
+    const newThought = {
+      thoughtText: thoughtText,
+    };
+    thoughts.push(newThought);
+  }
+  await Thought.collection.insertMany(thoughts);
+
+
+  // const reactions =[];
+  // for (let i = 0; i < 10; i++) {
+  //   const reactionBody = getRandomReaction();
+  //   const newReaction = {
+  //     reactionBody: reactionBody,
+  //   };
+  //   reactions.push(newReaction);
+  // }
+  // await Reaction.collection.insertMany(reactions);
+
   console.table(users);
+  console.table(thoughts);
   console.timeEnd('seeding complete 🌱');
   process.exit(0);
 });
