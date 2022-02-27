@@ -2,6 +2,7 @@ const { Schema, Types } = require('mongoose');
 //dependency
 const moment = require('moment');
 
+//Creates reaction schema
 const reactionSchema = new Schema(
   {
     reactionId: {
