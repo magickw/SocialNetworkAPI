@@ -1,6 +1,7 @@
 const { Schema, Types } = require('mongoose');
 //dependency
 const moment = require('moment');
+const reactionSchema = require('./Reaction');
 
 //Creates reaction schema
 const reactionSchema = new Schema(

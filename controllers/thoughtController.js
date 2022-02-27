@@ -5,16 +5,16 @@ module.exports = {
     getThoughts(req, res){
         Thought.find()
         // populate all of the reactions associated with it
-        .populate({path: 'reactions', select: '-__v'})
-        .select('-__v')
+        // .populate({path: 'reactions', select: '-__v'})
+        // .select('-__v')
             .then((thoughts) => res.json(thoughts))
             .catch((err) => res.status(500).json(err));
     },
     //get a single thought
     getSingleThought(req, res){
         Thought.findOne({ _id: req.params.thoughtId })
-        .populate({path: 'reactions', select: '-__v'})
-        .select('-__v')
+        // .populate({path: 'reactions', select: '-__v'})
+        // .select('-__v')
             .then((thought) =>
                 !thought
                     ? res.status(404).json({ message: 'No thought with that id' })

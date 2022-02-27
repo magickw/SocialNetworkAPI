@@ -20,7 +20,10 @@ This application allows you to write notes, save notes and deletes that are bein
 ## Installation
 `git clone` the repo to your local machine. To use this application, run the following command to install the dependencies: 
 
-`npm install`
+    npm install
+    npm i moment
+    npm i mongoose
+    npm i nodemon
 
 Then run the following command to seed the database:
 

@@ -15,12 +15,12 @@ connection.once('open', async () => {
   const users = [];
 
   for (let i = 0; i < 10; i++) {
-    const name = getRandomUserName();
+    const username = getRandomUserName();
     const thought = getRandomThought();
     const reaction = getRandomReaction();
     const newUser = {
-      username: name,
-      email: `${name}@mail.com`,
+      username: username,
+      email: `${username}@email.com`,
       thoughts: thought,
       reactions: reaction,
     };
