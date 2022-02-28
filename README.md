@@ -23,7 +23,7 @@ This application allows you to write notes, save notes and deletes that are bein
     npm install
     npm i moment
     npm i mongoose
-    npm i nodemon
+
 
 Then run the following command to seed the database:
 
