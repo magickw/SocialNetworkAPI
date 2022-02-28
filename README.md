@@ -38,7 +38,7 @@ Then open Insomnia and type http://localhost:3001/ to run this application on yo
 
 
 ## Demo
-Below is the demostration of this application. Please click <a href="https://www.youtube.com/watch?v=DWGBrKgvJcY">here</a> for walk-through video.
+Below is the demostration of this application. Please click <a href="https://www.youtube.com/watch?v=DWGBrKgvJcY" target="_blank">here</a> for walk-through video.
 <img src="images/demo.gif" alt="demo" />
 
 
