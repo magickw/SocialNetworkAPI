@@ -14,7 +14,7 @@ connection.once('open', async () => {
   // Empty arrays for randomly generated users
   const users = [];
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 5; i++) {
     const username = getRandomUserName();
     const newUser = {
       username: username,
@@ -26,8 +26,8 @@ connection.once('open', async () => {
   // Wait for the users to be inserted into the database
   await User.collection.insertMany(users);
 
-  const thoughts =[];
-  for (let i = 0; i < 10; i++) {
+  const thoughts = [];
+  for (let i = 0; i < 5; i++) {
     const thoughtText = getRandomThought();
     const newThought = {
       thoughtText: thoughtText,

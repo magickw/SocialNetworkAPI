@@ -5,8 +5,8 @@ module.exports = {
     getUsers(req, res){
         User.find()
         //populate will replace the thoughts id
-        // // .populate({path: 'thoughts', select: '-__v'})
-        // // .populate({path: 'friends', select: '-__v'})
+        // .populate({path: 'thoughts', select: '-__v'})
+        // .populate({path: 'friends', select: '-__v'})
         // .select('-__v')
                 .then((users) => res.json(users))         
                 .catch((err) => res.status(500).json(err));
@@ -73,6 +73,7 @@ module.exports = {
             { new: true }
         )
         .populate({path: 'friends', select: ('-__v')})
+        .select('-__v')
         .then((user) =>
                 !user
                     ? res.status(404).json({ message: 'No user found with that id.' })
@@ -87,7 +88,8 @@ module.exports = {
             { $pull: { friend: req.params.friendId } },
             { new: true },
           )
-          .populate({path: 'friends', select: ('-__v')})
+          .populate({path: 'friends', select: '-__v'})
+          .select('-__v')
           .then((user) =>
               !user
                 ? res.status(404).json({ message: 'No user found with that id.' })

@@ -31,7 +31,7 @@ module.exports = {
             .then((thought) => {
                 return User.findOneAndUpdate(
                   { _id: req.body.userId },
-                  { $addToSet: { thoughts: thought._id } },//insert unless already exists
+                  { $push: { thoughts: thought._id } },
                   { new: true }
                 );
               })
@@ -65,8 +65,10 @@ module.exports = {
 
     //delete thought
     deleteThought(req, res){
-        Thought.findOneAndDelete({ _id: req.params.thoughtId }, 
-          {new: true},)
+        Thought.findOneAndDelete(
+          { _id: req.params.thoughtId }, 
+          {new: true}
+          )
             .then((thought) =>
                 !thought
                     ? res.status(404).json({ message: 'No thought with that id' })
